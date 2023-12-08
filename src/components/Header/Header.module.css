@@ -1,0 +1,22 @@
+.header {
+  padding: 15px;
+  border: 1.5px solid #111;
+  border-radius: 0 0 8px 8px;
+}
+.nav_list {
+  display: flex;
+  gap: 20px;
+}
+
+.nav_link {
+  font-size: 20px;
+  padding: 5px 10px;
+  background-color: var(--main-color);
+  color: white;
+
+  border-radius: 10px;
+}
+.nav_link:hover,
+.nav_link:focus {
+  background-color: var(--secondary-color);
+}
