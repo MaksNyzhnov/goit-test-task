@@ -1,0 +1,76 @@
+.card {
+  width: 274px;
+  height: 426px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.card_image {
+  width: 274px;
+  height: 268px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+
+  margin-bottom: 14px;
+}
+.favorite_btn {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  z-index: 3;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.card_image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card_headline {
+  color: var(--main-text-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 8px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.card_headline > p > span {
+  color: var(--main-color);
+}
+
+.car_descr_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 28px;
+  max-height: 40px;
+  overflow: hidden;
+}
+.car_descr_text {
+  color: var(--main-text-color);
+  opacity: 0.5;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.card_btn {
+  width: 100%;
+  padding: 12px 0 12px 0;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+.card_btn:hover,
+.card_btn:focus {
+  background-color: var(--secondary-color);
+}

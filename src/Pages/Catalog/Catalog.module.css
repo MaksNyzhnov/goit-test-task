@@ -1,0 +1,6 @@
+.adverts_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px 29px;
+}
