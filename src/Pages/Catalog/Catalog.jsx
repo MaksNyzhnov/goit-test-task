@@ -1,33 +1,40 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect,} from 'react';
 import { fetchAdverts } from '../../redux/operations';
 import { getAdverts } from '../../redux/selectors';
 import AdvertCard from 'components/AdvertCard/AdvertCard';
+import { getIsModalOpen } from '../../redux/selectors';
 import css from './Catalog.module.css'
+
+
 const Catalog = () => {
+    const modal = useSelector(getIsModalOpen)
+    console.log(modal)
+    
+    
     const dispatch = useDispatch();
+
+    const onLoadMore = () => {
+
+  };
 
     useEffect(() => {
         dispatch(fetchAdverts());
     }, [dispatch]);
     const adverts = useSelector(getAdverts)
-    console.log(adverts)
+    
+    
+
     return <section className={css.catalog_section}>
         <ul className={css.adverts_list}>
-            {adverts.map(({img, year, model, make, rentalPrice, rentalCompany, type, functionalities, mileage, address, id }) => {
-                return <li key={id}><AdvertCard
-                    img={img}
-                    year={year}
-                    model={model}
-                    make={make}
-                    rentalPrice={rentalPrice}
-                    rentalCompany={rentalCompany}
-                    type={type}
-                    functionalities={functionalities}
-                    mileage={mileage}
-                    address={address} /></li>
+            {adverts.map((car, index) => {
+                const {id} = car
+                return <li key={id}><AdvertCard carData={car}
+                     /></li>
             } )}
         </ul>
+        <button type='button' onClick={onLoadMore} className={css.loadMore_btn} >Load More</button>
+       
     </section>
 }
 

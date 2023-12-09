@@ -1,9 +1,34 @@
-import { useState } from 'react'
+import { onModalOpen } from '../../redux/carsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import css from './AdvertCard.module.css'
+import Modal from '../Modal/Modal'
+import { getIsModalOpen } from '../../redux/selectors'
 
-const AdvertCard = ({img, year, model, make, rentalPrice, rentalCompany, type, functionalities, mileage, address }) => {
-  
+
+const AdvertCard = ({ carData }) => {
+    const { img,
+        year,
+        model,
+        make,
+        rentalPrice,
+        rentalCompany,
+        type,
+        functionalities,
+        mileage,
+        address,
+        id,
+        description,
+        rentalConditions,
+        fuelConsumption,
+        engineSize,
+        accessories } = carData 
+    
+    const modal = useSelector(getIsModalOpen)
+
+    const dispatch = useDispatch()
+
     const splitedAddress = address.split(',')
+
     return <div className={css.card}>
         
         <div className={css.card_image}>
@@ -25,7 +50,8 @@ const AdvertCard = ({img, year, model, make, rentalPrice, rentalCompany, type, f
                 <li><p className={css.car_descr_text}>{functionalities[0]}</p></li>
             </ul>
       </div>
-        <button type='button' className={css.card_btn}>Learn more</button>
+        <button type='button' className={css.card_btn} onClick={() => dispatch(onModalOpen())}>Learn more</button>
+        {modal && <Modal carData={carData} />}
     </div>
 }
 

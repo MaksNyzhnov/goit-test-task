@@ -59,6 +59,7 @@
 }
 
 .card_btn {
+  display: block;
   width: 100%;
   padding: 12px 0 12px 0;
   background-color: var(--main-color);
@@ -68,6 +69,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 1.42;
+  text-align: center;
 }
 
 .card_btn:hover,

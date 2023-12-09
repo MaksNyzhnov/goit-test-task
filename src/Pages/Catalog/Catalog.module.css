@@ -1,6 +1,26 @@
+.catalog_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .adverts_list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px 29px;
+  margin-bottom: 100px;
+}
+
+.loadMore_btn {
+  color: var(--main-color);
+  text-decoration: underline;
+  font-weight: 500;
+
+  background-color: transparent;
+  border: none;
+}
+.loadMore_btn:hover,
+.loadMore_btn:focus {
+  color: var(--secondary-color);
 }
