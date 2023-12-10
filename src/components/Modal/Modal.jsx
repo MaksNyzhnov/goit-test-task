@@ -3,13 +3,16 @@ import ReactDom from 'react-dom'
 import { useEffect } from 'react'
 import { onModalOpen } from '../../redux/carsSlice'
 import css from './Modal.module.css'
-import { getIsModalOpen } from '../../redux/selectors'
+import { getIsModalOpen, getCurrentAdvert } from '../../redux/selectors'
+import noImage from '../../images/nocar.jpg'
 
 
-const Modal = ({carData}) => {
+const Modal = () => {
     const dispatch = useDispatch()
     const isModalOpen = useSelector(getIsModalOpen)
-     useEffect(() => {
+    const currentAdvert = useSelector(getCurrentAdvert)
+    useEffect(() => {
+         
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         dispatch(onModalOpen());
@@ -42,16 +45,20 @@ const Modal = ({carData}) => {
         rentalConditions,
         fuelConsumption,
         engineSize,
-        accessories } = carData
+        accessories } = currentAdvert
      
     const splittedRentalConditions = rentalConditions.split('\n')
     const splittedAge = splittedRentalConditions[0].split(':')
     const splitedAddress = address.split(',')
 
+    const onImageError = (e) => {
+        e.target.src = noImage;
+    }
+
     return  ReactDom.createPortal(<div className={css.modal_overlay}>
         <div className={css.modal_content}>
             <button className={css.modal_close_btn} onClick={() => dispatch(onModalOpen())} type='button'>X</button>
-            <div className={css.modal_image}><img src={img} alt="car" /></div>
+            <div className={css.modal_image}><img src={img} onError={onImageError} alt={model} loading='lazy'/></div>
             <p className={css.modal_car_title}>{make}<span> {model}</span>, {year}</p>
             <ul className={css.modal_descr_list}>
                 <li><p className={css.modal_descr_text}>{splitedAddress[1]}</p></li>

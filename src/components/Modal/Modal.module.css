@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1200;
 }
 
@@ -99,6 +99,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 24px;
+  gap: 4px 12px;
 }
 .modal_car_featurs_list_item {
   font-weight: 400;
@@ -134,4 +135,9 @@
   line-height: 1.42;
   border-radius: 12px;
   background-color: var(--main-color);
+}
+
+.modal_rent_btn:hover,
+.modal_rent_btn:focus {
+  background-color: var(--secondary-color);
 }

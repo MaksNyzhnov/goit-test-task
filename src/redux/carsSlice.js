@@ -15,6 +15,17 @@ const carsSlice = createSlice({
     onModalOpen(state, action) {
       state.isModalOpen = !state.isModalOpen;
     },
+    setCurrentItem(state, action) {
+      state.currentItem = action.payload;
+    },
+    addToFavorites(state, action) {
+      state.favorites.push(action.payload);
+    },
+    removeFromFavorites(state, action) {
+      state.favorites = state.favorites.filter(
+        advert => advert.id !== action.payload
+      );
+    },
   },
   extraReducers: builder => {
     builder
@@ -43,5 +54,10 @@ const carsSlice = createSlice({
   },
 });
 
-export const { onModalOpen } = carsSlice.actions;
+export const {
+  onModalOpen,
+  addToFavorites,
+  removeFromFavorites,
+  setCurrentItem,
+} = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

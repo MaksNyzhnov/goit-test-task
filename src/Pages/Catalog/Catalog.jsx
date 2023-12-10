@@ -1,21 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect,} from 'react';
+import { useEffect, useState,} from 'react';
 import { fetchAdverts } from '../../redux/operations';
-import { getAdverts } from '../../redux/selectors';
+import { getAdverts, getIsModalOpen } from '../../redux/selectors';
 import AdvertCard from 'components/AdvertCard/AdvertCard';
-import { getIsModalOpen } from '../../redux/selectors';
+import Modal from 'components/Modal/Modal';
 import css from './Catalog.module.css'
 
 
 const Catalog = () => {
-    const modal = useSelector(getIsModalOpen)
-    console.log(modal)
+  const [visible, setVisible] = useState(12)
+  const modal = useSelector(getIsModalOpen)
+    
+    
     
     
     const dispatch = useDispatch();
 
     const onLoadMore = () => {
-
+    setVisible(prevState => prevState + 12)
   };
 
     useEffect(() => {
@@ -27,14 +29,18 @@ const Catalog = () => {
 
     return <section className={css.catalog_section}>
         <ul className={css.adverts_list}>
-            {adverts.map((car, index) => {
-                const {id} = car
-                return <li key={id}><AdvertCard carData={car}
+            {adverts.slice(0, visible).map((advert, index) => {
+                const {id} = advert
+                return <li key={id}><AdvertCard carData={advert}
                      /></li>
             } )}
         </ul>
-        <button type='button' onClick={onLoadMore} className={css.loadMore_btn} >Load More</button>
-       
+        {visible <= adverts.length && (
+  <button type="button" className={css.loadMore_btn} onClick={onLoadMore}>
+    Load more
+  </button>
+)}
+       {modal && <Modal/>}
     </section>
 }
 
