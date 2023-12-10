@@ -2,11 +2,13 @@ import AdvertCard from "components/AdvertCard/AdvertCard"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { getFavorites } from '../../redux/selectors';
+import { getFavorites, getIsModalOpen } from '../../redux/selectors';
 import css from '../Catalog/Catalog.module.css'
+import Modal from "components/Modal/Modal";
 const Favorites = () => {
     const [visible, setVisible] = useState(12)
     const adverts = useSelector(getFavorites)
+    const modal = useSelector(getIsModalOpen)
 
     const onLoadMore = () => {
     setVisible(prevState => prevState + 12)
@@ -31,7 +33,7 @@ const Favorites = () => {
     Load more
   </button>
 )}
-       
+       {modal && <Modal/>}
     </section>
 
 }

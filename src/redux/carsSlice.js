@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAdverts, fetchAdvertById } from './operations.js';
+import { fetchAdverts, fetchFilteredAllCars } from './operations.js';
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -7,6 +7,7 @@ const carsSlice = createSlice({
     items: [],
     favorites: [],
     currentItem: null,
+    filter: null,
     isLoading: false,
     error: null,
     isModalOpen: false,
@@ -26,6 +27,9 @@ const carsSlice = createSlice({
         advert => advert.id !== action.payload
       );
     },
+    advertsFilter(state, action) {
+      state.filter = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -40,14 +44,14 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(fetchAdvertById.pending, (state, action) => {
+      .addCase(fetchFilteredAllCars.pending, (state, action) => {
         state.isLoading = true;
       })
-      .addCase(fetchAdvertById.fulfilled, (state, action) => {
+      .addCase(fetchFilteredAllCars.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.currentItem = action.payload;
+        state.items = action.payload;
       })
-      .addCase(fetchAdvertById.rejected, (state, action) => {
+      .addCase(fetchFilteredAllCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -59,5 +63,6 @@ export const {
   addToFavorites,
   removeFromFavorites,
   setCurrentItem,
+  advertsFilter,
 } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

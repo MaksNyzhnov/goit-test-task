@@ -4,6 +4,7 @@ import { fetchAdverts } from '../../redux/operations';
 import { getAdverts, getIsModalOpen } from '../../redux/selectors';
 import AdvertCard from 'components/AdvertCard/AdvertCard';
 import Modal from 'components/Modal/Modal';
+import Filter from 'components/Filter/Filter';
 import css from './Catalog.module.css'
 
 
@@ -27,7 +28,9 @@ const Catalog = () => {
     
     
 
-    return <section className={css.catalog_section}>
+  return <>
+    <Filter/>
+    <section className={css.catalog_section}>
         <ul className={css.adverts_list}>
             {adverts.slice(0, visible).map((advert, index) => {
                 const {id} = advert
@@ -42,6 +45,7 @@ const Catalog = () => {
 )}
        {modal && <Modal/>}
     </section>
+    </>
 }
 
 export default Catalog

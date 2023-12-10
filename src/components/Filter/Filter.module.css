@@ -1,0 +1,36 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.dropdownSelect {
+  width: 224px;
+}
+.dropdownSelect_title {
+  color: #8a8a89;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.42;
+  margin-left: 5px;
+}
+
+.filter_form {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+}
+.search_btn {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.42;
+  padding: 14px 44px;
+  background-color: var(--main-color);
+  border-radius: 12px;
+  border: none;
+}
+.search_btn:hover,
+.search_btn:focus {
+  background-color: var(--secondary-color);
+}
