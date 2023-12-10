@@ -38,7 +38,7 @@ const carsSlice = createSlice({
       })
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items.push(...action.payload);
       })
       .addCase(fetchAdverts.rejected, (state, action) => {
         state.isLoading = false;

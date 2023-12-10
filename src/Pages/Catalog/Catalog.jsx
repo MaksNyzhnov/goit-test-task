@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState,} from 'react';
+import { useEffect, useState, useRef} from 'react';
 import { fetchAdverts } from '../../redux/operations';
 import { getAdverts, getIsModalOpen } from '../../redux/selectors';
 import AdvertCard from 'components/AdvertCard/AdvertCard';
@@ -9,22 +9,34 @@ import css from './Catalog.module.css'
 
 
 const Catalog = () => {
-  const [visible, setVisible] = useState(12)
+  
+  const [page, setPage] = useState(1);
+  const adverts = useSelector(getAdverts)
+  const allAdvertsNumber = adverts.length
   const modal = useSelector(getIsModalOpen)
     
     
     
-    
+    const initialized = useRef(false)
     const dispatch = useDispatch();
 
-    const onLoadMore = () => {
-    setVisible(prevState => prevState + 12)
+  const onLoadMore = () => {
+      setPage((prevPage) => prevPage + 1);
+   
   };
-
     useEffect(() => {
-        dispatch(fetchAdverts());
-    }, [dispatch]);
-    const adverts = useSelector(getAdverts)
+    if (!initialized.current) {
+      initialized.current = true;
+      dispatch(fetchAdverts(page));
+    }
+    });
+  
+    useEffect(() => {
+    if (page !== 1) dispatch(fetchAdverts(page));
+    }, [dispatch, page]);
+
+    
+    
     
     
 
@@ -32,13 +44,13 @@ const Catalog = () => {
     <Filter/>
     <section className={css.catalog_section}>
         <ul className={css.adverts_list}>
-            {adverts.slice(0, visible).map((advert, index) => {
+            {adverts.map((advert, index) => {
                 const {id} = advert
                 return <li key={id}><AdvertCard carData={advert}
                      /></li>
             } )}
         </ul>
-        {visible <= adverts.length && (
+        {allAdvertsNumber > 0 && allAdvertsNumber < 32  && (
   <button type="button" className={css.loadMore_btn} onClick={onLoadMore}>
     Load more
   </button>

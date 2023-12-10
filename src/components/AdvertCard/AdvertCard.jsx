@@ -2,7 +2,7 @@ import { onModalOpen, addToFavorites, removeFromFavorites, setCurrentItem } from
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import css from './AdvertCard.module.css'
-import { getIsModalOpen, getFavorites, getAdverts } from '../../redux/selectors'
+import { getFavorites, getAdverts } from '../../redux/selectors'
 import noImage from '../../images/nocar.jpg'
 
 
@@ -21,11 +21,7 @@ const AdvertCard = ({ carData }) => {
         mileage,
         address,
         id,
-        description,
-        rentalConditions,
-        fuelConsumption,
-        engineSize,
-        accessories } = carData 
+         } = carData 
     const splitedAddress = address.split(',')
     
     
