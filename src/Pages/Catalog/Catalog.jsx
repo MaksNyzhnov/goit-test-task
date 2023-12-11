@@ -50,7 +50,7 @@ const Catalog = () => {
                      /></li>
             } )}
         </ul>
-        {allAdvertsNumber > 0 && allAdvertsNumber < 32  && (
+        {allAdvertsNumber > 0 && allAdvertsNumber < 25  && (
   <button type="button" className={css.loadMore_btn} onClick={onLoadMore}>
     Load more
   </button>
